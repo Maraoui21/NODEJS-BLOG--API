@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model blog{
+  id          Int       @id @default(autoincrement())
+  title       String    @unique
+  content     String    @unique
+  createdAt   DateTime  @default(now())
+  label       Label?    @relation(fields: [labelId],references: [id])
+  labelId     Int?
+}
+
+model Label{
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  blogs blog[]
+}
+
+// model user{
+//   id Int @id @default(autoincrement())
+//   name String @unique
+//   mail String @unique
+//   password String @unique
+// }

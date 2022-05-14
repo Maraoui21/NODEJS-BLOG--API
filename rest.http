@@ -1,0 +1,34 @@
+### fetch BLOGS  
+GET http://localhost:3000/api/blogs
+
+### FETCH A BLOG WITH ID
+
+GET http://localhost:3000/api/blogs/2
+
+
+### DELETE A BLOG WITH ID
+
+DELETE http://localhost:3000/api/blogs/1
+
+
+### POST A NEW BLOG 
+
+POST http://localhost:3000/api/blogs
+Content-Type: application/json
+
+{
+    "title":"CORONA VIRUS",
+    "content":"lorem ZNZN ",
+    "labelId":1
+}
+
+### UPDATE ARTICLE
+
+PATCH http://localhost:3000/api/blogs/2
+Content-Type: application/json
+
+{
+    "title":"COVID 19",
+    "content":"LES DERNIER NEWS",
+    "labelId":2
+}
