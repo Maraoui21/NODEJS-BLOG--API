@@ -1,5 +1,6 @@
 const express = require('express');
 const createError = require('http-errors');
+var path = require('path');
 const morgan = require('morgan');
 require('dotenv').config();
 
@@ -9,10 +10,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 app.get('/', async (req, res, next) => {
-  res.send({ message: 'Awesome it works 🐻' });
+  res.sendFile('./Partials/index.html',{root:__dirname});
 });
 
+app.get('/add', async (req, res, next) => {
+  res.sendFile('./Partials/postArticle.html',{root:__dirname});
+});
+
+
 app.use('/api', require('./routes/api.route'));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   next(createError.NotFound());

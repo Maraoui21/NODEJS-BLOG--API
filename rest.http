@@ -3,12 +3,18 @@ GET http://localhost:3000/api/blogs
 
 ### FETCH A BLOG WITH ID
 
-GET http://localhost:3000/api/blogs/2
+GET http://localhost:3000/api/blogs/3
+
+
+### FETCH LABEL BLOGS
+
+GET http:///localhost:3000/api/Label
+
 
 
 ### DELETE A BLOG WITH ID
 
-DELETE http://localhost:3000/api/blogs/1
+DELETE http://localhost:3000/api/blogs/13
 
 
 ### POST A NEW BLOG 
@@ -17,8 +23,8 @@ POST http://localhost:3000/api/blogs
 Content-Type: application/json
 
 {
-    "title":"CORONA VIRUS",
-    "content":"lorem ZNZN ",
+    "title" :"HAMID",
+    "content":"HAMID ipsum Color sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia",
     "labelId":1
 }
 
@@ -29,6 +35,6 @@ Content-Type: application/json
 
 {
     "title":"COVID 19",
-    "content":"LES DERNIER NEWS",
+    "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia",
     "labelId":2
 }

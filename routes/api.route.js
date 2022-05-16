@@ -17,14 +17,16 @@ router.get('/blogs', async (req, res, next) => {
     });
 
 
-    // all labels that's contain a blogs
+    // // all labels that's contain blogs
 
-    const label = await prisma.label.findMany({
-      include: {blogs:true}
-    })
+    // const label = await prisma.label.findMany({
+    //   include: {blogs:true}
+    // })
 
 
-    res.json({blogs,label})
+    // res.json({blogs,label})
+    res.json(blogs);
+
 
   } catch(error){
     next(error)
@@ -49,6 +51,25 @@ router.get('/blogs/:id', async (req, res, next) => {
   }
 });
 
+// FETCH LABEL BLOGS 
+
+router.get('/Label/:id',async(req,res,next)=>{
+  try{
+    const {labelId} = req.params
+
+    const blogs = await prisma.blog.findMany({
+        where:{labelId:labelId}
+    })
+
+    res.json(blogs)
+  } catch(error){
+    next(error);
+  }
+})
+
+
+
+
 
 // POST A BLOG
 
@@ -58,11 +79,6 @@ router.post('/blogs', async (req, res, next) => {
 
     const blog = await prisma.blog.create({
       data: req.body
-      // {
-      //   title: req.body.name,
-      //   content: req.body.content,
-      //   labelId: req.body.label
-      // }
     })
 
     res.json(blog)

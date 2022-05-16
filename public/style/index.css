@@ -1,0 +1,119 @@
+
+/* RESET STYLE */
+
+body{
+    margin: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 0;    
+}
+
+#homeIcon{
+    color:white;
+    font-weight: bold;
+    padding: 0 20px 0 0;
+}
+
+/* navbar */
+.navbar{
+    width: 100%;
+    overflow: hidden;
+    background-color:rgb(31, 139, 182);
+    padding: 10px 0px;
+    position: fixed;
+}
+
+.navbar ul{   
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+}
+
+.navbar ul li{
+    float: left;
+    margin-left: 20px;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 0.8em;
+    letter-spacing: 0.01em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 550;
+}
+
+.navbtn{
+    width:100%;
+}
+
+i{
+    float: left;
+}
+
+
+/* css d'un Article */
+
+.articles{
+    padding-top: 2.8em;
+}
+
+.Article{
+    background: #00000008;
+    list-style: none;
+    padding: 10px 20px;
+    margin-bottom: 0.5em;
+}
+
+.label{
+    background: #03a9f4;
+    padding: 7px;
+    border-radius: 2px;
+    font-weight: bold;
+    color: white;
+    font-size: 0.82em;
+    text-transform: uppercase;
+}
+
+
+/* RESPONSIVE CSS */
+
+@media only screen and (max-width:1070px){
+    
+    .navbar{
+        padding:0;
+        max-height:500px;
+        transition: max-height 0.9s ease-out;
+        top: 50px;
+        background-color: rgb(19 155 217);
+    }
+    .navbar ul li{
+        float: none;
+        padding: 17px;
+        text-align: left;
+    }
+    .navbtn button{
+        margin: auto;
+        width: 100%;
+        padding: 20px;
+        border: none;
+        background: #148baf;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .navbtn{
+        display: block!important;
+        position: fixed;
+        z-index: 1;
+    }
+    .hide{
+        max-height: 0px!important;
+    }
+
+    .articles {
+        padding-top: 3.8em;
+    }   
+    #homeIcon{display: none;}
+}
