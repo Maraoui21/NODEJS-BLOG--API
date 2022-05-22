@@ -66,6 +66,13 @@ i{
     margin-bottom: 0.5em;
 }
 
+.thumbnail{
+    width: 30%;
+    height: 30%;
+    border-radius: 4px;
+    border: 1px solid #00000026;
+}
+
 .label{
     background: #03a9f4;
     padding: 7px;

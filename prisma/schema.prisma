@@ -14,7 +14,7 @@ model blog{
   id          Int       @id @default(autoincrement())
   title       String    @unique
   content     String    @unique
-  // image       String    @unique
+  imgUrl      String    @unique
   createdAt   DateTime  @default(now())
   label       Label?    @relation(fields: [labelId],references: [id])
   labelId     Int?

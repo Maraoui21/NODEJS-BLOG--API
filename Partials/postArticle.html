@@ -7,9 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="article" action="/api/blogs" method="post">
+    <form id="article" action="/api/blogs" method="POST" enctype="multipart/form-data">
         <input type="text" id="title" name="title">
         <input type="text" id="content" name="content">
+        <input type="file" id="imgUrl" name="imgUrl"> 
         <input type="submit">
     </form>
 </body>

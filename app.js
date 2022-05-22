@@ -1,10 +1,16 @@
 const express = require('express');
 const createError = require('http-errors');
-var path = require('path');
 const morgan = require('morgan');
 require('dotenv').config();
 
+
 const app = express();
+
+
+
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
@@ -20,7 +26,11 @@ app.get('/add', async (req, res, next) => {
 
 app.use('/api', require('./routes/api.route'));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+
+
+
+
 
 app.use((req, res, next) => {
   next(createError.NotFound());

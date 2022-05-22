@@ -1,7 +1,19 @@
 const router = require('express').Router();
 const {PrismaClient} = require('@prisma/client');
-
+const multer = require('multer');
 const prisma = new PrismaClient();
+
+const filestorageEngine = multer.diskStorage({
+  destination:(req,file,cb) =>{
+    cb(null,'./public/img')
+  },
+  filename:(req,file,cb)=>{
+    console.log(file)
+    cb(null,Date.now()  + '--' + file.originalname)
+  }
+})
+
+const upload = multer({storage:filestorageEngine});
 
 
 // GET ALL BLOGS 
@@ -73,14 +85,15 @@ router.get('/Label/:id',async(req,res,next)=>{
 
 // POST A BLOG
 
-router.post('/blogs', async (req, res, next) => {
-
+router.post('/blogs',upload.single("imgUrl") , async (req, res, next) => {
   try {
-
     const blog = await prisma.blog.create({
-      data: req.body
+      data:{
+        title:req.body.title,
+        content:req.body.content,
+        imgUrl:req.file.filename
+      }
     })
-
     res.json(blog)
 
 
