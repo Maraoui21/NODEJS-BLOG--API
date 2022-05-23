@@ -20,6 +20,7 @@ model blog{
   labelId     Int?
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
+  comment   comment[]
 }
 
 model Label{
@@ -35,15 +36,14 @@ model User {
   name      String?
   role      Role     @default(USER)
   posts     blog[]
-  // comment   comment[]
 }
 
 model comment{
   id Int @id @default(autoincrement())
   email   String
   content String
-  // author    User?    @relation(fields: [authorId], references: [id])
-  // authorId  Int?
+  article    blog?    @relation(fields: [articleId], references: [id])
+  articleId  Int?
 }
 
 

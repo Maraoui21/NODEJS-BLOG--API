@@ -22,7 +22,10 @@ router.post('/add', async (req,res,next)=>{
     try {
         
         const user = await prisma.user.create({
-            data:req.body
+            data:{
+              email:req.body.email,
+              name:req.body.name
+            }
           })
           res.json(user)
     } catch (error) {
@@ -31,21 +34,21 @@ router.post('/add', async (req,res,next)=>{
 });
 
 
+
 // // DELETE USER
 
-// router.delete('/remove/:id', async (req, res, next) => {
-  
-//     try {
-//       const deletedUser = await prisma.user.delete({
-//         where:{id: Number(req.params.id)}
-//       })
-//       res.json(deletedUser)
+router.delete('/remove/:id', async (req, res, next) => {
+    try {
+      const deletedUser = await prisma.user.delete({
+        where:{id: Number(req.params.id)}
+      })
+      res.json(deletedUser)
     
-//     } catch (error) {
-//       next(error)
-//     }
+    } catch (error) {
+      next(error)
+    }
   
-//   });
+  });
 
 
 

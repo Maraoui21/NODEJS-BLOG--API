@@ -10,10 +10,7 @@ const prisma = new PrismaClient();
 router.post('/add',async (req,res,next)=>{
     try {
         const comment = await prisma.comment.create({
-            data:{
-                email:req.body.email,
-                content:req.body.content
-            }   
+            data:req.body
         })
         res.json(comment)
     } catch (error) {
@@ -37,5 +34,19 @@ router.get('/', async (req,res,next)=>{
         next(error)
     }
 })
+
+
+router.patch('/update/:id', async (req,res,next)=>{
+    try {
+        
+        const comment = await prisma.comment.create({
+            where:{id:req.params.id}
+        })
+        res.json(comment)
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 module.exports = router;
