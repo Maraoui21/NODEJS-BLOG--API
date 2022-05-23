@@ -18,6 +18,8 @@ model blog{
   createdAt   DateTime  @default(now())
   label       Label?    @relation(fields: [labelId],references: [id])
   labelId     Int?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
 }
 
 model Label{
@@ -26,19 +28,26 @@ model Label{
   blogs blog[]
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+  posts     blog[]
+  // comment   comment[]
+}
+
+model comment{
+  id Int @id @default(autoincrement())
+  email   String
+  content String
+  // author    User?    @relation(fields: [authorId], references: [id])
+  // authorId  Int?
+}
 
 
-
-// model user{
-//   id Int @id @default(autoincrement())
-//   name String @unique
-//   mail String @unique
-//   password String @unique
-//   role     Role
-// }
-
-
-// enum Role{
-//   Admin 
-//   Author
-// }
+enum Role {
+  USER
+  ADMIN
+}

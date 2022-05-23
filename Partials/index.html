@@ -36,7 +36,7 @@
                     <h2 class='title'>${element.title}</h2>
                     <img class="thumbnail" src="${element.imgUrl?"/img/"+element.imgUrl:"/"}">
                     <p class='content'>${element.content}</p>
-                    <span class='label'><a href="${element.label?"/api/Label/"+element.label.id:"/"}">${element.label?element.label.name:noLabel}</a></span>
+                    <span class='label'><a href="${element.label?"/Label/"+element.label.id:"/"}">${element.label?element.label.name:noLabel}</a></span>
                     <h3 class='createdAt'>created at : ${element.createdAt}</h3>
                     </li>`;
                 
@@ -48,7 +48,7 @@
 
         getAllBlogs();
 
-const show =()=>{
+const show = () =>{
     const navUL = document.querySelector('body > div.navbar');
     const icon = document.querySelector('body > div.navbtn > button');
         if(navUL.className == 'navbar hide'){

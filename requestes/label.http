@@ -1,0 +1,4 @@
+# FETCH LABEL ARTICLES
+
+
+GET http://localhost:3000/label/1

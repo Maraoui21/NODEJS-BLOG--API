@@ -14,7 +14,7 @@ GET http:///localhost:3000/api/Label
 
 ### DELETE A BLOG WITH ID
 
-DELETE http://localhost:3000/api/blogs/8
+DELETE http://localhost:3000/api/blogs/16
 
 
 ### POST A NEW BLOG 
@@ -25,6 +25,7 @@ Content-Type: application/json
 {
     "title" :"HAMID",
     "content":"HAMID ipsum Color sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia",
+    "imgUrl":"",
     "labelId":1
 }
 
@@ -34,7 +35,9 @@ PATCH http://localhost:3000/api/blogs/2
 Content-Type: application/json
 
 {
+    "id":6,
     "title":"COVID 19",
     "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia",
-    "labelId":2
+    "labelId":2,
 }
+

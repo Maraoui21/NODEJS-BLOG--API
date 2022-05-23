@@ -63,21 +63,7 @@ router.get('/blogs/:id', async (req, res, next) => {
   }
 });
 
-// FETCH LABEL BLOGS 
 
-router.get('/Label/:id',async(req,res,next)=>{
-  try{
-    const {labelId} = req.params
-
-    const blogs = await prisma.blog.findMany({
-        where:{labelId:labelId}
-    })
-
-    res.json(blogs)
-  } catch(error){
-    next(error);
-  }
-})
 
 
 

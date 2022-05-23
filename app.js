@@ -24,7 +24,24 @@ app.get('/add', async (req, res, next) => {
 });
 
 
-app.use('/api', require('./routes/api.route'));
+
+
+
+// articles route
+app.use('/api', require('./routes/article'));
+
+// label route
+app.use('/Label',require('./routes/label'));
+
+// users route 
+
+app.use('/users',require('./routes/users'));
+
+// comment route
+
+app.use('/comment',require('./routes/comment'))
+
+
 
 app.use(express.static('public'));
 
