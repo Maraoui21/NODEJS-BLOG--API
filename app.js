@@ -19,12 +19,6 @@ app.get('/', async (req, res, next) => {
   res.sendFile('./public/index.html',{root:__dirname});
 });
 
-app.get('/add', async (req, res, next) => {
-  res.sendFile('./Partials/postArticle.html',{root:__dirname});
-});
-
-
-
 
 
 // articles route
