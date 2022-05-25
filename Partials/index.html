@@ -9,16 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="navbtn" style="display: none;">
-        <button onclick="show()"><i class="fa-solid fa-bars"></i></button>
-    </div>
-    <div class="navbar hide">
-        <ul>
-            <li><a href="/"><i id='homeIcon' class="fa fa-home" aria-hidden="true"></i>HOME</a></li>
-            <li><a href="/add">Add ARTICLE</a></li>
-            <li><a href="/login">LOGIN</a></li>
-        </ul>
-    </div>
+
     <div class="articles">
     </div>
     <script>
@@ -48,16 +39,7 @@
 
         getAllBlogs();
 
-const show = () =>{
-    const navUL = document.querySelector('body > div.navbar');
-    const icon = document.querySelector('body > div.navbtn > button');
-        if(navUL.className == 'navbar hide'){
-        icon.innerHTML =`<i class="fa-solid fa-xmark"></i>`;
-    }else{
-        icon.innerHTML =`<i class="fa-solid fa-bars"></i>`;
-    }
-    navUL.classList.toggle("hide"); 
-}
+
 
     </script>
 </body>

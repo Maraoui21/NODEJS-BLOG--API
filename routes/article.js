@@ -77,7 +77,8 @@ router.post('/blogs',upload.single("imgUrl") , async (req, res, next) => {
       data:{
         title:req.body.title,
         content:req.body.content,
-        imgUrl:req.file.filename
+        imgUrl:req.file.filename,
+        Label:req.body.id
       }
     })
     res.json(blog)

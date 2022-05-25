@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 app.get('/', async (req, res, next) => {
-  res.sendFile('./Partials/index.html',{root:__dirname});
+  res.sendFile('./public/index.html',{root:__dirname});
 });
 
 app.get('/add', async (req, res, next) => {

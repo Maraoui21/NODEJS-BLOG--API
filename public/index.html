@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbtn" style="display: none;">
+        <button onclick="show()"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="navbar hide">
+        <ul>
+            <li><a onclick="inject('home')"><i id='homeIcon' class="fa fa-home" aria-hidden="true"></i>HOME</a></li>
+            <li><a onclick="inject('add')"><i class="fa-solid fa-marker"></i>ADD ARTICLE</a></li>
+            <li><a onclick="inject('login')"><i class="fa-solid fa-arrow-right-to-bracket"></i>LOGIN</a></li>
+        </ul>
+    </div>
+    <div id="root">
+
+    </div>
+    <script type="module" src="./pages/Main.js">
+        inject('home')
+    </script>
+    <script type="text/javascript">
+        function show(){
+    const navUL = window.document.querySelector('body > div.navbar');
+    const icon = window.document.querySelector('body > div.navbtn > button');
+        if(navUL.className == 'navbar hide'){
+        icon.innerHTML =`<i class="fa-solid fa-xmark"></i>`;
+    }else{
+        icon.innerHTML =`<i class="fa-solid fa-bars"></i>`;
+    }
+    navUL.classList.toggle("hide"); 
+    }
+    </script>
+</body>
+</html>
