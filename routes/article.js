@@ -63,12 +63,6 @@ router.get('/blogs/:id', async (req, res, next) => {
   }
 });
 
-
-
-
-
-
-
 // POST A BLOG
 
 router.post('/blogs',upload.single("imgUrl") , async (req, res, next) => {
@@ -78,7 +72,8 @@ router.post('/blogs',upload.single("imgUrl") , async (req, res, next) => {
         title:req.body.title,
         content:req.body.content,
         imgUrl:req.file.filename,
-        Label:req.body.id
+        labelId:Number(req.body.labelId),
+        authorId: Number(req.body.authorId)
       }
     })
     res.json(blog)
@@ -104,6 +99,8 @@ router.delete('/blogs/:id', async (req, res, next) => {
     res.json(blog)
   
   } catch (error) {
+    res.send('article is deleted')
+    // 
     next(error)
   }
 

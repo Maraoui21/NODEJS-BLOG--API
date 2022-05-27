@@ -14,7 +14,7 @@ GET http:///localhost:3000/api/Label
 
 ### DELETE A BLOG WITH ID
 
-DELETE http://localhost:3000/api/blogs/16
+DELETE http://localhost:3000/api/blogs/23
 
 
 ### POST A NEW BLOG 

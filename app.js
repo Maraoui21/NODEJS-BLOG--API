@@ -1,14 +1,17 @@
 const express = require('express');
 const createError = require('http-errors');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const cors = require('cors');
+const { use } = require('bcrypt/promises');
+
 
 
 const app = express();
 
-
-
-
+app.use(cors());
+app.use(cookieParser())
 
 
 app.use(express.json());
@@ -18,6 +21,7 @@ app.use(morgan('dev'));
 app.get('/', async (req, res, next) => {
   res.sendFile('./public/index.html',{root:__dirname});
 });
+
 
 
 
@@ -35,6 +39,9 @@ app.use('/users',require('./routes/users'));
 
 app.use('/comment',require('./routes/comment'))
 
+// login route
+
+app.use('/login',require('./routes/login'))
 
 
 app.use(express.static('public'));
