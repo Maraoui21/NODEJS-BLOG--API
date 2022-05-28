@@ -1,5 +1,5 @@
 # FETCH LABEL ARTICLES
-GET http://localhost:3000/label/2
+GET http://localhost:3000/label/4
 
 
 ### fetch all labels

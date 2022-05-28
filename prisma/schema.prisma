@@ -13,7 +13,7 @@ datasource db {
 model blog{
   id          Int       @id @default(autoincrement())
   title       String    @unique
-  content     String    @unique
+  content     String    
   imgUrl      String    @unique
   createdAt   DateTime  @default(now())
   label       Label?    @relation(fields: [labelId],references: [id])

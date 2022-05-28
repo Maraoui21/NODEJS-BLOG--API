@@ -9,15 +9,15 @@ router.post('/' ,  async (req , res ,next)=>{
     const result = await prisma.user.findMany();
     const exist = result.find(user => user.email == toLog.email);
     if(exist == undefined){
-        return res.status(404).send('this email is not exist')
+        return res.status(404).json({error:'his email is not exist'})
     }
     try {
         
         if(await bcrypt.compare(toLog.password,exist.password)){
-            res.status(200).json({id:exist.id})
+            res.status(200).json({id:exist})
         }
         else{
-            res.send('password is inncorect')
+            res.json({error:'Password incorrect'})
         }
     } catch (error) {
         next(error)

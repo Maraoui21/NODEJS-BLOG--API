@@ -24,10 +24,7 @@ async function getHome(){
     const blog = await fetch(BlogsUrl);
     const Blogs = await blog.json();
     Blogs.reverse(); // pour affichher les articles les plus recents aux tete de la page
-    // fetch all labels
-    const label = await fetch(LabelsUrl);
-    const Labels = await label.json();
-    Blogs.forEach(element => {
+   Blogs.forEach(element => {
                  const Blog = `
                  <div id="${element.id}" class="w-full md:w-1/2 lg:w-1/3 px-4">
                  <div class="p-5 border border-gray-150 max-w-[370px] mx-auto mb-10">
@@ -35,7 +32,7 @@ async function getHome(){
                        <img
                        src="${element.imgUrl?"/img/"+element.imgUrl:"/"}"
                        alt="${element.title}" 
-                          class="w-full"
+                          class="w-full h-60"
                           />
                     </div>
                     <div>
@@ -56,9 +53,9 @@ async function getHome(){
                           >
                           <a href="${element.label?"/Label/"+element.label.id:"/"}">${element.label?element.label.name:noLabel}</a>
                        </span>
-                       <h3>
+                       <h3  onclick="inject('preview?id=${element.id}')">
                           <a
-                             href="${"/api/blogs/"+element.id}"
+                            
                              class="
                              font-semibold
                              text-xl
@@ -74,10 +71,11 @@ async function getHome(){
                              ${element.title}
                           </a>
                        </h3>
-                       <p id="content" class="text-base text-body-color">
+                       <p id="content" class="h-12 overflow-hidden text-base text-body-color">
                        ${element.content}
                        </p>
                     </div>
+                    <h1 id="author" class="pt-2 text-gray-700 font-bold"><span class="text-indigo-700">Posted By : </span>${element.author?element.author.name:"UNKOWN"}</h1>
                  </div>
               </div> 
                  `;
@@ -92,6 +90,7 @@ async function getHome(){
                 `
     return container;
  }
+ getHome();
 export const Home = await getHome();
 
 

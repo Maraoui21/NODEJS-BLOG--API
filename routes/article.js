@@ -25,7 +25,15 @@ router.get('/blogs', async (req, res, next) => {
     // all blogs part of a label
 
     const blogs = await prisma.blog.findMany({
-      include: {label:true}
+      include:{
+        label:true,
+        author:{
+          select:{
+            name:true,
+          }
+        }
+      },
+
     });
 
 
@@ -53,7 +61,15 @@ router.get('/blogs/:id', async (req, res, next) => {
   try {
     const {id} = req.params
     const blog = await prisma.blog.findUnique({
-      where:{id: Number(id)}
+      where:{id: Number(id)},
+      include:{
+        label:true,
+        author:{
+          select:{
+            name:true
+          }
+        }
+      }
     })
 
     res.json(blog)
@@ -74,7 +90,7 @@ router.post('/blogs',upload.single("imgUrl") , async (req, res, next) => {
         imgUrl:req.file.filename,
         labelId:Number(req.body.labelId),
         authorId: Number(req.body.authorId)
-      }
+      },
     })
     res.json(blog)
 

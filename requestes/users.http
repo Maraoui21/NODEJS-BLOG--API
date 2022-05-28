@@ -2,7 +2,7 @@
 GET http://localhost:3000/users/
 
 ### DELETE A USER
-DELETE  http://localhost:300/users/remove/7
+DELETE  http://localhost:300/users/remove/11
 
 ### POST A USER
 POST http://localhost:3000/users/add

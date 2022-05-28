@@ -1,8 +1,6 @@
 import { getLocal } from "./Main.js";
 const user = getLocal();
 
-console.log(user)
-
 export async function newArticle(){
     const LabelsUrl = '/label/all';
     // fetch all labels
