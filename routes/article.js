@@ -30,8 +30,9 @@ router.get('/blogs', async (req, res, next) => {
         author:{
           select:{
             name:true,
-          }
-        }
+          },
+        },
+        comment:true
       },
 
     });
@@ -92,8 +93,13 @@ router.post('/blogs',upload.single("imgUrl") , async (req, res, next) => {
         authorId: Number(req.body.authorId)
       },
     })
-    res.json(blog)
-
+    if(blog){
+      res.send('article is posted return to home page')
+    }
+    else{
+      res.send('something wrong try again');
+    }
+    // res.json(blog)
 
   } catch (error) {
     next(error)

@@ -42,7 +42,8 @@ router.get('/:id',async(req,res,next)=>{
       const {id} = req.params
   
       const blogs = await prisma.blog.findMany({
-          where:{labelId: Number(id)}
+          where:{labelId: Number(id)},
+          include:{label:true}
       })
   
       res.json(blogs)

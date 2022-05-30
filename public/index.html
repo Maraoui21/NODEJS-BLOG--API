@@ -34,11 +34,11 @@
                 <ul  class="flex font-semibold justify-between">
                     <!-- Active Link = text-indigo-500
                     Inactive Link = hover:text-indigo-500 -->
-                    <li href="#home" onclick="inject('home')" class="md:px-4 md:py-2 text-indigo-500">HOME</li>
-                    <li href="#singup" id="Signup" onclick="inject('signup')" class="md:px-4 md:py-2 hover:text-indigo-400">SIGNUP</li>
+                    <li href="#home" onclick="inject('home')" class="cursor-pointer md:px-4 md:py-2 text-indigo-500">HOME</li>
+                    <li href="#singup" id="Signup" onclick="inject('signup')" class="cursor-pointer md:px-4 md:py-2 hover:text-indigo-400">SIGNUP</li>
                 </ul>
             </div>
-            <div id="loginBtn" class="order-2 md:order-3">
+            <div id="loginBtn" class="cursor-pointer order-2 md:order-3">
                <button  onclick="inject('login')" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-gray-50 rounded-xl flex items-center gap-2">
                   <!-- Heroicons - Login Solid -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -54,7 +54,7 @@
     <div id="root">
      
     </div>
-    <div class="bg-gray-100">
+    <div id="footer" class="bg-gray-100">
         <div class="max-w-6xl m-auto text-gray-800 flex">
            <div class="p-5 w-48 ">
               <div onclick="inject('home')" class="text-xs uppercase text-gray-500 font-medium">Home</div>
@@ -65,7 +65,6 @@
            </div>
         </div>
      </div>
-     
      <div class="bg-gray-100 pt-2 ">
         <div class="flex pb-5 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col
            md:flex-row max-w-6xl">

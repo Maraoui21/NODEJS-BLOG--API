@@ -17,7 +17,7 @@ export async function newArticle(){
     });
     options+=`</select >`;
     const Add = `<div class="p-8 max-w-2xl mx-auto">
-	<form  action="/api/blogs" method="POST" enctype="multipart/form-data">
+	<form  id='post-form' action="/api/blogs" method="POST" enctype="multipart/form-data">
         <input class="outline-0	 border-0 mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600" type="text" id="title" name="title" placeholder="title"/>
     <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
         <div class="py-2 px-4 bg-white rounded-b-lg dark:bg-gray-800">

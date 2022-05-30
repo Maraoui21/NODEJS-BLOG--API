@@ -29,15 +29,16 @@ async function getHome(){
                  <div id="${element.id}" class="w-full md:w-1/2 lg:w-1/3 px-4">
                  <div class="p-5 border border-gray-150 max-w-[370px] mx-auto mb-10">
                     <div class="rounded overflow-hidden mb-8">
-                       <img
+                       <img onclick="inject('preview?id=${element.id}')"
                        src="${element.imgUrl?"/img/"+element.imgUrl:"/"}"
                        alt="${element.title}" 
-                          class="w-full h-60"
+                          class="cursor-pointer w-full h-60 hover:scale-150 duration-300"
                           />
                     </div>
                     <div>
-                       <span
+                       <span onclick="inject('label?id=${element.label.id}')"
                           class="
+                          cursor-pointer
                           bg-primary
                           rounded
                           inline-block
@@ -51,9 +52,9 @@ async function getHome(){
                           mb-5
                           "
                           >
-                          <a href="${element.label?"/Label/"+element.label.id:"/"}">${element.label?element.label.name:noLabel}</a>
+                          <a onclick="inject('label?id=${element.label.id}')">${element.label?element.label.name:noLabel}</a>
                        </span>
-                       <h3  onclick="inject('preview?id=${element.id}')">
+                       <h3 class="cursor-pointer" onclick="inject('preview?id=${element.id}')">
                           <a
                             
                              class="
@@ -75,6 +76,7 @@ async function getHome(){
                        ${element.content}
                        </p>
                     </div>
+                    <a onclick="inject('preview?id=${element.id}')" class="cursor-pointer text-blue-600 hover:underline">Read more</a>
                     <h1 id="author" class="pt-2 text-gray-700 font-bold"><span class="text-indigo-700">Posted By : </span>${element.author?element.author.name:"UNKOWN"}</h1>
                  </div>
               </div> 
