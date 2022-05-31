@@ -35,7 +35,7 @@ model User {
   email     String   @unique
   name      String?
   password  String?
-  role      Role     @default(USER)
+  role      Role     @default(Author)
   posts     blog[]
 }
 
@@ -49,6 +49,6 @@ model comment{
 
 
 enum Role {
-  USER
+  Author
   ADMIN
 }

@@ -22,10 +22,14 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
-    "node-localstorage": "^2.2.1"
+    "node-localstorage": "^2.2.1",
+    "ts-node": "^10.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16",
     "prisma": "^3.14.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.js"
   }
 }

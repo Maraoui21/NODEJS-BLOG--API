@@ -18,9 +18,9 @@ const unique = `
                     <div id="comments" class="m-10 px-10 bg-gray-50 py-6 rounded-lg shadow-sm">
                     <div>
                     <section class="rounded-b-lg  mt-4 ">
-                  <input class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl" id="email" name="email" placeHolder="email"/>
-                  <textarea id="comment" name="content" class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl" placeholder="Add your comment here" cols="6" rows="6" spellcheck="false"></textarea>
-                  <button onclick="addcomment();" class="font-bold py-2 px-4 w-full bg-purple-400 text-lg text-white shadow-md rounded-lg ">Comment </button>                
+                  <input class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl" type="email" id="email" name="email" placeHolder="email" required/>
+                  <textarea id="comment" name="content" class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl" placeholder="Add your comment here" cols="6" rows="6" spellcheck="false" required></textarea>
+                  <button onclick="addcomment();" class="font-bold py-2 px-4 w-full bg-indigo-500 hover:bg-indigo-600 text-lg text-white shadow-md rounded-lg ">Comment </button>                
                       <div id="task-comments" class="pt-4">
 
                       </div>

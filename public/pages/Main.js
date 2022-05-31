@@ -66,7 +66,7 @@ function inject(location){
                     comment += ` <div  iv class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
                     <div class="flex flex-row justify-center mr-2">
                       <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4" src="https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png">
-                      <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">${element.email}</h3>
+                      <h3 class="text-indigo-500 hover:text-indigo-600 font-semibold text-lg text-center md:text-left ">${element.email}</h3>
                     </div>
                       <p style="width: 90%" class="text-gray-600 text-lg text-center md:text-left ">${element.content}</p>
                   </div>`
@@ -84,17 +84,23 @@ function inject(location){
         function addcomment(){
             const email = document.querySelector('#email').value;
             const comment = document.querySelector('#comment').value;
-            axios.post('/comment/add', {
-                "email": email,
-                "content": comment,
-                "articleId":id
-              })
-              .then(function (response) {
-                    getComments();
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            if(email && comment == ''){
+                alert('please type something email and comment field are requierd')
+            }
+            else{
+                axios.post('/comment/add', {
+                    "email": email,
+                    "content": comment,
+                    "articleId":id
+                  })
+                  .then(function (response) {
+                        getComments();
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+            }
+            
         }
         window.addcomment = addcomment;
     }
