@@ -45,7 +45,6 @@ function inject(location){
     if(location.includes('preview')){
         root.innerHTML = unique;
         id = window.location.href.split('?id=')[1]; 
-        console.log(id)
         async function getUnique(){
             const timeIcon = `<i class="fa-solid fa-clock pr-5 text-2xl text-white"></i>`;
             const res = await fetch('http://localhost:3000/api/blogs/'+id+'')
@@ -57,7 +56,47 @@ function inject(location){
             document.querySelector('#thumbnail').innerHTML=`<img src="${article.imgUrl?"/img/"+article.imgUrl:"/"}" alt="${article.title}" class="m-auto"/>`
             document.querySelector('#author').innerHTML=article.author?"Posted BY : "+article.author.name:"UNKOWN";
         } 
+        async function getComments(){
+            const res = await fetch('comment/'+id+'');
+            const commentsContainer = document.querySelector('#task-comments');
+            const comments = await res.json();
+            var comment =``;
+            if(comments.length!=0){
+                comments.forEach(element=>{
+                    comment += ` <div  iv class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
+                    <div class="flex flex-row justify-center mr-2">
+                      <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4" src="https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png">
+                      <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">${element.email}</h3>
+                    </div>
+                      <p style="width: 90%" class="text-gray-600 text-lg text-center md:text-left ">${element.content}</p>
+                  </div>`
+                });
+            }
+            else{
+                comment=`<div class='center flex justify-center font-bold'>THERE IS NO COMMENTS</div>`
+            }
+            commentsContainer.innerHTML=comment;
+
+        }
+        window.getComments = getComments;
         getUnique(); 
+        getComments();
+        function addcomment(){
+            const email = document.querySelector('#email').value;
+            const comment = document.querySelector('#comment').value;
+            axios.post('/comment/add', {
+                "email": email,
+                "content": comment,
+                "articleId":id
+              })
+              .then(function (response) {
+                    getComments();
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+        }
+        window.addcomment = addcomment;
     }
     if(location.includes('label')){
         const id = window.location.href.split('?id=')[1]; 
@@ -135,6 +174,7 @@ function inject(location){
         getLabArticles();
     }
 }
+
 window.inject = inject;
 
 
@@ -261,8 +301,8 @@ function singUp(){
     });
 }
 
-window.singUp = singUp
 
+window.singUp = singUp
 
 
 

@@ -1,5 +1,5 @@
 ### fetch comment 
-GET http://localhost:300/comment
+GET http://localhost:300/comment/41
 
 
 ### POST
@@ -9,6 +9,6 @@ Content-Type: application/json
 
 {   
     "email":"yassinelmaroui76@gmail.com",
-    "content":"commnet",
-    "articleId":6
+    "content":"comment test",
+    "articleId":41
 }
