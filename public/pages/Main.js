@@ -4,9 +4,9 @@ import { loginPage } from "./Login.js";
 import { sres } from "./Signup.js";
 import { unique } from "./ArticlePreview.js";
 import { container } from "./Label.js";
+import { admin } from "./admin.js";
 const root = window.document.querySelector('#root');
 const alertBox = window.document.querySelector('#alertBox');
-
 // tmp reffer to templates 
 const tmp = {
              'home': Home,
@@ -14,7 +14,7 @@ const tmp = {
              'login':loginPage,
              'signup': sres,
              'preview':unique,
-             'dashboard':"DASHBOAD"
+             'admin':admin
             }
 
 var id;
@@ -179,6 +179,64 @@ function inject(location){
         } 
         getLabArticles();
     }
+    if(location == 'admin'){
+        var userTemplate = ``;
+        root.innerHTML=tmp[location];
+        const dashboard =`<li class="cursor-pointer md:px-4 md:py-2 hover:text-indigo-400" onclick="inject('admin')">Dashboard<li>`
+        document.querySelector('#ul-menu-home').innerHTML+=dashboard;
+        async function getUsers(){
+            const res = await fetch('/users');
+            const users = await res.json();
+            // labels 
+            const res2 = await fetch('/label/all');
+            const labels = await res2.json();
+            // articles
+            const res3 = await fetch('/api/blogs');
+            const articles = await res3.json();
+            document.querySelector('#usersCounter').innerHTML=users.length;
+            document.querySelector('#labelsCounter').innerHTML=labels.length;
+            document.querySelector('#articlesCounter').innerHTML=articles.length;
+            users.forEach(e=>{
+                const user = `<tr>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                        <img class="h-10 w-10 rounded-full"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                            alt="">
+                    </div>
+            
+                    <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900">${e.name}
+                        </div>
+                        <div class="text-sm leading-5 text-gray-500">${e.email}</div>
+                    </div>
+                </div>
+            </td>
+            
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div class="text-sm leading-5 text-gray-900">UTILISATEUR</div>
+                <div class="text-sm leading-5 text-gray-500">Publisher</div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <span
+                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">${e.role}</span>
+            </td>
+            <td
+                class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                ${e.id}</td>
+            <td
+                class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+            </td>
+            </tr>`;
+            userTemplate+=user;
+            })
+            document.querySelector('#table').innerHTML=userTemplate;
+        }
+        getUsers();
+    }
+    
 }
 
 window.inject = inject;
@@ -258,17 +316,18 @@ function getIn(){
         localStorage.setItem('userId',response.data.id.id);
         const userId = localStorage.getItem('userId');
         if(userId){
-            // // if(role =='admin'){
-            // //     inject('dashboard');
-            // // }
-            // else{
-                alertBox.innerHTML=`<div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
+            if(response.data.id.role == 'ADMIN'){
+                inject('admin');
+                
+            }
+                else{
+                    alertBox.innerHTML=`<div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
             <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
             <div>
                 <span class="font-medium">Welcome ${response.data.id.name}
         </div>`
             inject('home')  
-            // }
+                }
         }
         hideBtns();
     }else{
