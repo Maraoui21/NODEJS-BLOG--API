@@ -116,10 +116,10 @@ function inject(location){
                 <div id="${element.id}" class="w-full md:w-1/2 lg:w-1/3 px-4">
                 <div class="p-5 border border-gray-150 max-w-[370px] mx-auto mb-10">
                    <div class="rounded overflow-hidden mb-8">
-                      <img
+                      <img onclick="inject('preview?id=${element.id}')"
                       src="${element.imgUrl?"/img/"+element.imgUrl:"/"}"
                       alt="${element.title}" 
-                         class="w-full h-60"
+                         class="w-full cursor-pointer h-60 hover:scale-150 duration-300"
                          />
                    </div>
                    <div>
@@ -139,9 +139,9 @@ function inject(location){
                          mb-5
                          "
                          >
-                         <a onclick="inject('label?id=${element.label.id}')">${element.label?element.label.name:noLabel}</a>
+                         <a  onclick="inject('label?id=${element.label.id}')">${element.label?element.label.name:noLabel}</a>
                       </span>
-                      <h3  onclick="inject('preview?id=${element.id}')">
+                      <h3  class="cursor-pointer" onclick="inject('preview?id=${element.id}')">
                          <a
                            
                             class="
@@ -182,8 +182,10 @@ function inject(location){
     if(location == 'admin'){
         var userTemplate = ``;
         root.innerHTML=tmp[location];
-        const dashboard =`<li class="cursor-pointer md:px-4 md:py-2 hover:text-indigo-400" onclick="inject('admin')">Dashboard<li>`
-        document.querySelector('#ul-menu-home').innerHTML+=dashboard;
+        const dashboard =`<li id="dashboard" class="cursor-pointer md:px-4 md:py-2 hover:text-indigo-400" onclick="inject('admin')">Dashboard<li>`
+        if(!document.querySelector('#dashboard')){
+            document.querySelector('#ul-menu-home').innerHTML+=dashboard;
+        }
         async function getUsers(){
             const res = await fetch('/users');
             const users = await res.json();
@@ -227,13 +229,16 @@ function inject(location){
                 ${e.id}</td>
             <td
                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                <a onclick="deleteUser(${e.id})" class="text-indigo-600 hover:text-indigo-900"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg></a>
             </td>
             </tr>`;
             userTemplate+=user;
             })
             document.querySelector('#table').innerHTML=userTemplate;
         }
+        window.getUsers = getUsers;
         getUsers();
     }
     
@@ -241,6 +246,20 @@ function inject(location){
 
 window.inject = inject;
 
+
+function deleteUser(id){
+    axios.delete('/users/remove/'+id,{
+
+    }).then(function (response) {
+        alert(response.data)
+        inject('admin')
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+}
+
+window.deleteUser = deleteUser;
 
 // to find current location based on hash and inject it to root div
 var currLocation = window.location.href.split('#')[1];
