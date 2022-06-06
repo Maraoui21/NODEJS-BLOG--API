@@ -22,8 +22,6 @@ router.get('/blogs', async (req, res, next) => {
 
   try{
 
-    // all blogs part of a label
-
     const blogs = await prisma.blog.findMany({
       include:{
         label:true,

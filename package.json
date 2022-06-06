@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "ts-node": "ts-node --compiler-options '{\"module\":\"CommunJS\"}'"
   },
   "keywords": [],
   "author": "",
@@ -26,10 +27,11 @@
     "ts-node": "^10.8.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.1.0",
     "nodemon": "^2.0.16",
     "prisma": "^3.14.0"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.js"
+    "seed": "ts-node prisma/seed.ts"
   }
 }

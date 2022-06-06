@@ -3,12 +3,12 @@ GET http://localhost:3000/api/blogs
 
 ### FETCH A BLOG WITH ID
 
-GET http://localhost:3000/api/blogs/3
+GET http://localhost:3000/api/blogs/18
 
 
 ### FETCH LABEL BLOGS
 
-GET http:///localhost:3000/api/Label
+GET http:///localhost:3000/api/Label/4
 
 
 
